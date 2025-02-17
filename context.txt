@@ -1,0 +1,810 @@
+---Disease classes---
+class_names = {
+    2: 'Benign Keratosis',
+    4: 'Melanocytic Nevi',
+    3: 'Dermatofibroma',
+    6: 'Melanoma',
+    5: 'Vascular Lesions',
+    1: 'Basal Cell Carcinoma',
+    0: 'Actinic Keratosis'
+}
+
+Context for "Melanocytic Nevi" class:
+---search_results---
+------------------------------------------------------------------------------------------------------------------------
+[{'node_type': 'SideEffect',
+  'identifier': 'C0027962',
+  'name': 'Melanocytic naevus',
+  'score': 6.851057052612305},
+ {'node_type': 'Symptom',
+  'identifier': 'C562737',
+  'name': 'Connective tissue nevi',
+  'score': 6.103903770446777},
+ {'node_type': 'Disease',
+  'identifier': 'DOID:6484',
+  'name': 'mediastinal melanocytic neurilemmoma',
+  'score': 5.655403137207031},
+ {'node_type': 'Disease',
+  'identifier': 'DOID:0111529',
+  'name': 'familial multiple nevi flammei',
+  'score': 5.196929931640625},
+ {'node_type': 'Disease',
+  'identifier': 'DOID:0111359',
+  'name': 'large congenital melanocytic nevus',
+  'score': 4.815071105957031},
+ {'node_type': 'Symptom',
+  'identifier': 'C536819',
+  'name': 'Congenital giant melanocytic nevus',
+  'score': 4.815071105957031},
+ {'node_type': 'Disease',
+  'identifier': 'DOID:0070327',
+  'name': 'melanoma in congenital melanocytic nevus',
+  'score': 4.192161560058594},
+ {'node_type': 'Disease',
+  'identifier': 'DOID:4955',
+  'name': 'central nervous system melanocytic neoplasm',
+  'score': 4.192161560058594},
+ {'node_type': 'Disease',
+  'identifier': 'DOID:6345',
+  'name': 'malignant melanocytic neoplasm of the peripheral nerve sheath',
+  'score': 3.0200719833374023},
+ {'node_type': 'Disease',
+  'identifier': 'DOID:7077',
+  'name': 'malignant melanocytic peripheral nerve sheath tumor of mediastinum',
+  'score': 3.0200719833374023}]
+------------------------------------------------------------------------------------------------------------------------
+
+---disease_entries---
+------------------------------------------------------------------------------------------------------------------------
+{'mediastinal melanocytic neurilemmoma': {'node_type': 'Disease',
+                                          'identifier': 'DOID:6484',
+                                          'name': 'mediastinal melanocytic '
+                                                  'neurilemmoma',
+                                          'score': 5.655403137207031},
+ 'familial multiple nevi flammei': {'node_type': 'Disease',
+                                    'identifier': 'DOID:0111529',
+                                    'name': 'familial multiple nevi flammei',
+                                    'score': 5.196929931640625},
+ 'large congenital melanocytic nevus': {'node_type': 'Disease',
+                                        'identifier': 'DOID:0111359',
+                                        'name': 'large congenital melanocytic '
+                                                'nevus',
+                                        'score': 4.815071105957031},
+ 'melanoma in congenital melanocytic nevus': {'node_type': 'Disease',
+                                              'identifier': 'DOID:0070327',
+                                              'name': 'melanoma in congenital '
+                                                      'melanocytic nevus',
+                                              'score': 4.192161560058594},
+ 'central nervous system melanocytic neoplasm': {'node_type': 'Disease',
+                                                 'identifier': 'DOID:4955',
+                                                 'name': 'central nervous '
+                                                         'system melanocytic '
+                                                         'neoplasm',
+                                                 'score': 4.192161560058594},
+ 'malignant melanocytic neoplasm of the peripheral nerve sheath': {'node_type': 'Disease',
+                                                                   'identifier': 'DOID:6345',
+                                                                   'name': 'malignant '
+                                                                           'melanocytic '
+                                                                           'neoplasm '
+                                                                           'of '
+                                                                           'the '
+                                                                           'peripheral '
+                                                                           'nerve '
+                                                                           'sheath',
+                                                                   'score': 3.0200719833374023},
+ 'malignant melanocytic peripheral nerve sheath tumor of mediastinum': {'node_type': 'Disease',
+                                                                        'identifier': 'DOID:7077',
+                                                                        'name': 'malignant '
+                                                                                'melanocytic '
+                                                                                'peripheral '
+                                                                                'nerve '
+                                                                                'sheath '
+                                                                                'tumor '
+                                                                                'of '
+                                                                                'mediastinum',
+                                                                        'score': 3.0200719833374023}}
+------------------------------------------------------------------------------------------------------------------------
+
+---neighborhood---
+------------------------------------------------------------------------------------------------------------------------
+{'DOID:6484': [{'data': {'id': 152681,
+                         'neo4j_type': 'Disease',
+                         'neo4j_root': 1,
+                         'properties': {'identifier': 'DOID:6484',
+                                        'Linkout': '<a '
+                                                   'href=https://staging.knowwheregraph.org/browse/#kwgr:topic.DOID6484 '
+                                                   'target="_blank">kwgr:topic.DOID6484</a>',
+                                        'omim_list': [],
+                                        'name': 'mediastinal melanocytic '
+                                                'neurilemmoma',
+                                        'source': 'Disease Ontology',
+                                        'mesh_list': []}}},
+               {'data': {'id': 153096,
+                         'neo4j_type': 'Disease',
+                         'neo4j_root': 0,
+                         'properties': {'identifier': 'DOID:3205',
+                                        'Linkout': '<a '
+                                                   'href=https://staging.knowwheregraph.org/browse/#kwgr:topic.DOID3205 '
+                                                   'target="_blank">kwgr:topic.DOID3205</a>',
+                                        'omim_list': [],
+                                        'name': 'melanotic neurilemmoma',
+                                        'source': 'Disease Ontology',
+                                        'mesh_list': []}}},
+               {'data': {'id': 173779,
+                         'source': 152681,
+                         'target': 153096,
+                         'neo4j_type': 'ISA_DiD',
+                         'properties': {'source': 'Disease Ontology'}}}],
+ 'DOID:0111529': [{'data': {'id': 150232,
+                            'neo4j_type': 'Disease',
+                            'neo4j_root': 1,
+                            'properties': {'identifier': 'DOID:0111529',
+                                           'Linkout': '<a '
+                                                      'href=https://staging.knowwheregraph.org/browse/#kwgr:topic.DOID0111529 '
+                                                      'target="_blank">kwgr:topic.DOID0111529</a>',
+                                           'omim_list': [],
+                                           'name': 'familial multiple nevi '
+                                                   'flammei',
+                                           'source': 'Disease Ontology',
+                                           'mesh_list': ['C535816']}}},
+                  {'data': {'id': 151462,
+                            'neo4j_type': 'Disease',
+                            'neo4j_root': 0,
+                            'properties': {'identifier': 'DOID:1271',
+                                           'Linkout': '<a '
+                                                      'href=https://staging.knowwheregraph.org/browse/#kwgr:topic.DOID1271 '
+                                                      'target="_blank">kwgr:topic.DOID1271</a>',
+                                           'omim_list': [],
+                                           'name': 'capillary disease',
+                                           'source': 'Disease Ontology',
+                                           'mesh_list': []}}},
+                  {'data': {'id': 166990,
+                            'source': 150232,
+                            'target': 151462,
+                            'neo4j_type': 'ISA_DiD',
+                            'properties': {'source': 'Disease Ontology'}}}],
+ 'DOID:0111359': [{'data': {'id': 147976,
+                            'neo4j_type': 'Disease',
+                            'neo4j_root': 1,
+                            'properties': {'identifier': 'DOID:0111359',
+                                           'Linkout': '<a '
+                                                      'href=https://staging.knowwheregraph.org/browse/#kwgr:topic.DOID0111359 '
+                                                      'target="_blank">kwgr:topic.DOID0111359</a>',
+                                           'omim_list': [],
+                                           'name': 'large congenital '
+                                                   'melanocytic nevus',
+                                           'source': 'Disease Ontology',
+                                           'mesh_list': ['C536819']}}},
+                  {'data': {'id': 152937,
+                            'neo4j_type': 'Disease',
+                            'neo4j_root': 0,
+                            'properties': {'identifier': 'DOID:0080015',
+                                           'Linkout': '<a '
+                                                      'href=https://staging.knowwheregraph.org/browse/#kwgr:topic.DOID0080015 '
+                                                      'target="_blank">kwgr:topic.DOID0080015</a>',
+                                           'omim_list': [],
+                                           'name': 'physical disorder',
+                                           'source': 'Disease Ontology',
+                                           'mesh_list': []}}},
+                  {'data': {'id': 153109,
+                            'neo4j_type': 'Disease',
+                            'neo4j_root': 0,
+                            'properties': {'identifier': 'DOID:37',
+                                           'Linkout': '<a '
+                                                      'href=https://staging.knowwheregraph.org/browse/#kwgr:topic.DOID37 '
+                                                      'target="_blank">kwgr:topic.DOID37</a>',
+                                           'omim_list': [],
+                                           'name': 'skin disease',
+                                           'source': 'Disease Ontology',
+                                           'mesh_list': ['D012873',
+                                                         'D012871']}}},
+                  {'data': {'id': 2490744,
+                            'neo4j_type': 'Gene',
+                            'neo4j_root': 0,
+                            'properties': {'license': 'CC0 1.0',
+                                           'identifier': 673,
+                                           'ensembl': 'ENSG00000157764',
+                                           'sources': ['Entrez Gene'],
+                                           'synonyms': ['B-RAF1',
+                                                        'B-raf',
+                                                        'BRAF-1',
+                                                        'BRAF1',
+                                                        'NS7',
+                                                        'RAFB1'],
+                                           'chromosome': '7',
+                                           'name': 'BRAF',
+                                           'description': 'B-Raf '
+                                                          'proto-oncogene, '
+                                                          'serine/threonine '
+                                                          'kinase',
+                                           'source': 'Entrez Gene',
+                                           'chembl_id': 'CHEMBL5145'}}},
+                  {'data': {'id': 2493535,
+                            'neo4j_type': 'Gene',
+                            'neo4j_root': 0,
+                            'properties': {'license': 'CC0 1.0',
+                                           'identifier': 4893,
+                                           'ensembl': 'ENSG00000213281',
+                                           'sources': ['Entrez Gene'],
+                                           'synonyms': ['ALPS4',
+                                                        'CMNS',
+                                                        'KRAS',
+                                                        'N-ras',
+                                                        'NCMS',
+                                                        'NRAS1',
+                                                        'NS6'],
+                                           'chromosome': '1',
+                                           'name': 'NRAS',
+                                           'description': 'NRAS '
+                                                          'proto-oncogene, '
+                                                          'GTPase',
+                                           'source': 'Entrez Gene',
+                                           'chembl_id': 'CHEMBL2079845'}}},
+                  {'data': {'id': 2492506,
+                            'neo4j_type': 'Gene',
+                            'neo4j_root': 0,
+                            'properties': {'license': 'CC0 1.0',
+                                           'identifier': 3265,
+                                           'ensembl': 'ENSG00000174775',
+                                           'sources': ['Entrez Gene'],
+                                           'synonyms': ['C-BAS/HAS',
+                                                        'C-H-RAS',
+                                                        'C-HA-RAS1',
+                                                        'CTLO',
+                                                        'H-RASIDX',
+                                                        'HAMSV',
+                                                        'HRAS1',
+                                                        'RASH1',
+                                                        'p21ras'],
+                                           'chromosome': '11',
+                                           'name': 'HRAS',
+                                           'description': 'HRas '
+                                                          'proto-oncogene, '
+                                                          'GTPase',
+                                           'source': 'Entrez Gene',
+                                           'chembl_id': 'CHEMBL2167'}}},
+                  {'data': {'id': 2494270,
+                            'neo4j_type': 'Gene',
+                            'neo4j_root': 0,
+                            'properties': {'license': 'CC0 1.0',
+                                           'identifier': 5894,
+                                           'ensembl': 'ENSG00000132155',
+                                           'sources': ['Entrez Gene'],
+                                           'synonyms': ['CMD1NN',
+                                                        'CRAF',
+                                                        'NS5',
+                                                        'Raf-1',
+                                                        'c-Raf'],
+                                           'chromosome': '3',
+                                           'name': 'RAF1',
+                                           'description': 'Raf-1 '
+                                                          'proto-oncogene, '
+                                                          'serine/threonine '
+                                                          'kinase',
+                                           'source': 'Entrez Gene',
+                                           'chembl_id': 'CHEMBL1906'}}},
+                  {'data': {'id': 2493108,
+                            'neo4j_type': 'Gene',
+                            'neo4j_root': 0,
+                            'properties': {'license': 'CC0 1.0',
+                                           'identifier': 4157,
+                                           'ensembl': 'ENSG00000258839',
+                                           'sources': ['Entrez Gene'],
+                                           'synonyms': ['CMM5',
+                                                        'MSH-R',
+                                                        'SHEP2'],
+                                           'chromosome': '16',
+                                           'name': 'MC1R',
+                                           'description': 'melanocortin 1 '
+                                                          'receptor',
+                                           'source': 'Entrez Gene',
+                                           'chembl_id': 'CHEMBL3795'}}},
+                  {'data': {'id': 166675,
+                            'source': 147976,
+                            'target': 152937,
+                            'neo4j_type': 'ISA_DiD',
+                            'properties': {'source': 'Disease Ontology'}}},
+                  {'data': {'id': 166674,
+                            'source': 147976,
+                            'target': 153109,
+                            'neo4j_type': 'ISA_DiD',
+                            'properties': {'source': 'Disease Ontology'}}},
+                  {'data': {'id': 15164169,
+                            'source': 147976,
+                            'target': 2490744,
+                            'neo4j_type': 'ASSOCIATES_DaG',
+                            'properties': {'diseases_identifiers': ['MedlinePlus'],
+                                           'sources': ['DISEASES'],
+                                           'diseases_confidences': [5.0],
+                                           'diseases_scores': ['CURATED'],
+                                           'source': 'HPO',
+                                           'diseases_sources': ['knowledge']}}},
+                  {'data': {'id': 15164095,
+                            'source': 147976,
+                            'target': 2493535,
+                            'neo4j_type': 'ASSOCIATES_DaG',
+                            'properties': {'diseases_identifiers': ['MedlinePlus'],
+                                           'sources': ['DISEASES'],
+                                           'diseases_confidences': [5.0],
+                                           'diseases_scores': ['CURATED'],
+                                           'source': 'HPO',
+                                           'diseases_sources': ['knowledge']}}},
+                  {'data': {'id': 12642501,
+                            'source': 147976,
+                            'target': 2492506,
+                            'neo4j_type': 'ASSOCIATES_DaG',
+                            'properties': {'source': 'HPO'}}},
+                  {'data': {'id': 150606419,
+                            'source': 147976,
+                            'target': 2494270,
+                            'neo4j_type': 'ASSOCIATES_DaG',
+                            'properties': {'source': 'HPO'}}},
+                  {'data': {'id': 36481822,
+                            'source': 147976,
+                            'target': 2493108,
+                            'neo4j_type': 'ASSOCIATES_DaG',
+                            'properties': {'source': 'HPO'}}}],
+ 'DOID:0070327': [{'data': {'id': 151227,
+                            'neo4j_type': 'Disease',
+                            'neo4j_root': 1,
+                            'properties': {'identifier': 'DOID:0070327',
+                                           'Linkout': '<a '
+                                                      'href=https://staging.knowwheregraph.org/browse/#kwgr:topic.DOID0070327 '
+                                                      'target="_blank">kwgr:topic.DOID0070327</a>',
+                                           'omim_list': [],
+                                           'name': 'melanoma in congenital '
+                                                   'melanocytic nevus',
+                                           'source': 'Disease Ontology',
+                                           'mesh_list': []}}},
+                  {'data': {'id': 143942,
+                            'neo4j_type': 'Disease',
+                            'neo4j_root': 0,
+                            'properties': {'identifier': 'DOID:8923',
+                                           'Linkout': '<a '
+                                                      'href=https://staging.knowwheregraph.org/browse/#kwgr:topic.DOID8923 '
+                                                      'target="_blank">kwgr:topic.DOID8923</a>',
+                                           'omim_list': [],
+                                           'name': 'skin melanoma',
+                                           'source': 'Disease Ontology',
+                                           'mesh_list': ['C562393']}}},
+                  {'data': {'id': 2490744,
+                            'neo4j_type': 'Gene',
+                            'neo4j_root': 0,
+                            'properties': {'license': 'CC0 1.0',
+                                           'identifier': 673,
+                                           'ensembl': 'ENSG00000157764',
+                                           'sources': ['Entrez Gene'],
+                                           'synonyms': ['B-RAF1',
+                                                        'B-raf',
+                                                        'BRAF-1',
+                                                        'BRAF1',
+                                                        'NS7',
+                                                        'RAFB1'],
+                                           'chromosome': '7',
+                                           'name': 'BRAF',
+                                           'description': 'B-Raf '
+                                                          'proto-oncogene, '
+                                                          'serine/threonine '
+                                                          'kinase',
+                                           'source': 'Entrez Gene',
+                                           'chembl_id': 'CHEMBL5145'}}},
+                  {'data': {'id': 162528,
+                            'source': 151227,
+                            'target': 143942,
+                            'neo4j_type': 'ISA_DiD',
+                            'properties': {'source': 'Disease Ontology'}}},
+                  {'data': {'id': 2291603,
+                            'source': 151227,
+                            'target': 2490744,
+                            'neo4j_type': 'ASSOCIATES_DaG',
+                            'properties': {'diseases_identifiers': ['https://diseases.jensenlab.org/Entity?documents=10&type1=9606&id1=ENSP00000419060&type2=-26&id2=DOID:0070327'],
+                                           'diseases_scores': ['6.047'],
+                                           'sources': ['DISEASES'],
+                                           'diseases_sources': ['textmining'],
+                                           'diseases_confidences': [3.024]}}}],
+ 'DOID:4955': [{'data': {'id': 150443,
+                         'neo4j_type': 'Disease',
+                         'neo4j_root': 1,
+                         'properties': {'identifier': 'DOID:4955',
+                                        'Linkout': '<a '
+                                                   'href=https://staging.knowwheregraph.org/browse/#kwgr:topic.DOID4955 '
+                                                   'target="_blank">kwgr:topic.DOID4955</a>',
+                                        'omim_list': [],
+                                        'name': 'central nervous system '
+                                                'melanocytic neoplasm',
+                                        'source': 'Disease Ontology',
+                                        'mesh_list': []}}},
+               {'data': {'id': 144914,
+                         'neo4j_type': 'Disease',
+                         'neo4j_root': 0,
+                         'properties': {'identifier': 'DOID:8243',
+                                        'Linkout': '<a '
+                                                   'href=https://staging.knowwheregraph.org/browse/#kwgr:topic.DOID8243 '
+                                                   'target="_blank">kwgr:topic.DOID8243</a>',
+                                        'omim_list': [],
+                                        'name': 'meningeal melanomatosis',
+                                        'source': 'Disease Ontology',
+                                        'mesh_list': []}}},
+               {'data': {'id': 150842,
+                         'neo4j_type': 'Disease',
+                         'neo4j_root': 0,
+                         'properties': {'identifier': 'DOID:6379',
+                                        'Linkout': '<a '
+                                                   'href=https://staging.knowwheregraph.org/browse/#kwgr:topic.DOID6379 '
+                                                   'target="_blank">kwgr:topic.DOID6379</a>',
+                                        'omim_list': [],
+                                        'name': 'diffuse meningeal '
+                                                'melanocytosis',
+                                        'source': 'Disease Ontology',
+                                        'mesh_list': []}}},
+               {'data': {'id': 152410,
+                         'neo4j_type': 'Disease',
+                         'neo4j_root': 0,
+                         'properties': {'identifier': 'DOID:3620',
+                                        'Linkout': '<a '
+                                                   'href=https://staging.knowwheregraph.org/browse/#kwgr:topic.DOID3620 '
+                                                   'target="_blank">kwgr:topic.DOID3620</a>',
+                                        'omim_list': [],
+                                        'name': 'central nervous system cancer',
+                                        'source': 'Disease Ontology',
+                                        'mesh_list': ['D016543']}}},
+               {'data': {'id': 174616,
+                         'source': 144914,
+                         'target': 150443,
+                         'neo4j_type': 'ISA_DiD',
+                         'properties': {'source': 'Disease Ontology'}}},
+               {'data': {'id': 173736,
+                         'source': 150842,
+                         'target': 150443,
+                         'neo4j_type': 'ISA_DiD',
+                         'properties': {'source': 'Disease Ontology'}}},
+               {'data': {'id': 172779,
+                         'source': 150443,
+                         'target': 152410,
+                         'neo4j_type': 'ISA_DiD',
+                         'properties': {'source': 'Disease Ontology'}}}],
+ 'DOID:6345': [{'data': {'id': 143862,
+                         'neo4j_type': 'Disease',
+                         'neo4j_root': 1,
+                         'properties': {'identifier': 'DOID:6345',
+                                        'Linkout': '<a '
+                                                   'href=https://staging.knowwheregraph.org/browse/#kwgr:topic.DOID6345 '
+                                                   'target="_blank">kwgr:topic.DOID6345</a>',
+                                        'omim_list': [],
+                                        'name': 'malignant melanocytic '
+                                                'neoplasm of the peripheral '
+                                                'nerve sheath',
+                                        'source': 'Disease Ontology',
+                                        'mesh_list': []}}},
+               {'data': {'id': 153334,
+                         'neo4j_type': 'Disease',
+                         'neo4j_root': 0,
+                         'properties': {'identifier': 'DOID:5940',
+                                        'Linkout': '<a '
+                                                   'href=https://staging.knowwheregraph.org/browse/#kwgr:topic.DOID5940 '
+                                                   'target="_blank">kwgr:topic.DOID5940</a>',
+                                        'omim_list': [],
+                                        'name': 'malignant peripheral nerve '
+                                                'sheath tumor',
+                                        'source': 'Disease Ontology',
+                                        'mesh_list': ['D018319']}}},
+               {'data': {'id': 146919,
+                         'neo4j_type': 'Disease',
+                         'neo4j_root': 0,
+                         'properties': {'identifier': 'DOID:6344',
+                                        'Linkout': '<a '
+                                                   'href=https://staging.knowwheregraph.org/browse/#kwgr:topic.DOID6344 '
+                                                   'target="_blank">kwgr:topic.DOID6344</a>',
+                                        'omim_list': [],
+                                        'name': 'melanotic psammomatous '
+                                                'malignant peripheral nerve '
+                                                'sheath tumor',
+                                        'source': 'Disease Ontology',
+                                        'mesh_list': []}}},
+               {'data': {'id': 173727,
+                         'source': 143862,
+                         'target': 153334,
+                         'neo4j_type': 'ISA_DiD',
+                         'properties': {'source': 'Disease Ontology'}}},
+               {'data': {'id': 173726,
+                         'source': 146919,
+                         'target': 143862,
+                         'neo4j_type': 'ISA_DiD',
+                         'properties': {'source': 'Disease Ontology'}}}],
+ 'DOID:7077': [{'data': {'id': 152168,
+                         'neo4j_type': 'Disease',
+                         'neo4j_root': 1,
+                         'properties': {'identifier': 'DOID:7077',
+                                        'Linkout': '<a '
+                                                   'href=https://staging.knowwheregraph.org/browse/#kwgr:topic.DOID7077 '
+                                                   'target="_blank">kwgr:topic.DOID7077</a>',
+                                        'omim_list': [],
+                                        'name': 'malignant melanocytic '
+                                                'peripheral nerve sheath tumor '
+                                                'of mediastinum',
+                                        'source': 'Disease Ontology',
+                                        'mesh_list': []}}},
+               {'data': {'id': 145300,
+                         'neo4j_type': 'Disease',
+                         'neo4j_root': 0,
+                         'properties': {'identifier': 'DOID:1192',
+                                        'Linkout': '<a '
+                                                   'href=https://staging.knowwheregraph.org/browse/#kwgr:topic.DOID1192 '
+                                                   'target="_blank">kwgr:topic.DOID1192</a>',
+                                        'omim_list': [],
+                                        'name': 'peripheral nervous system '
+                                                'neoplasm',
+                                        'source': 'Disease Ontology',
+                                        'mesh_list': ['D018317', 'D010524']}}},
+               {'data': {'id': 144797,
+                         'neo4j_type': 'Disease',
+                         'neo4j_root': 0,
+                         'properties': {'identifier': 'DOID:5559',
+                                        'Linkout': '<a '
+                                                   'href=https://staging.knowwheregraph.org/browse/#kwgr:topic.DOID5559 '
+                                                   'target="_blank">kwgr:topic.DOID5559</a>',
+                                        'omim_list': [],
+                                        'name': 'mediastinal cancer',
+                                        'source': 'Disease Ontology',
+                                        'mesh_list': ['D008479']}}},
+               {'data': {'id': 174084,
+                         'source': 152168,
+                         'target': 145300,
+                         'neo4j_type': 'ISA_DiD',
+                         'properties': {'source': 'Disease Ontology'}}},
+               {'data': {'id': 174085,
+                         'source': 152168,
+                         'target': 144797,
+                         'neo4j_type': 'ISA_DiD',
+                         'properties': {'source': 'Disease Ontology'}}}]}
+------------------------------------------------------------------------------------------------------------------------
+
+---wiki_info---
+------------------------------------------------------------------------------------------------------------------------
+('A melanocytic nevus (also known as nevocytic nevus, nevus-cell nevus, and '
+ 'commonly as a mole) is usually a noncancerous condition of pigment-producing '
+ 'skin cells. It is a type of melanocytic tumor that contains nevus cells. A '
+ 'mole can be either subdermal (under the skin) or a pigmented growth on the '
+ 'skin, formed mostly of a type of cell known as a melanocyte. The high '
+ "concentration of the body's pigmenting agent, melanin, is responsible for "
+ 'their dark color. Moles are a member of the family of skin lesions known as '
+ 'nevi (singular "nevus"), occurring commonly in humans. Some sources equate '
+ 'the term "mole" with "melanocytic nevus", but there are also sources that '
+ 'equate the term "mole" with any nevus form.\n'
+ "The majority of moles appear during the first 2 decades of a person's life, "
+ 'with about 1 in every 100 babies being born with moles. Acquired moles are a '
+ 'form of benign neoplasm, while congenital moles, or congenital nevi, are '
+ 'considered a minor malformation or hamartoma and may be at a higher risk for '
+ 'melanoma.\n'
+ '\n'
+ '\n'
+ '== Signs and symptoms ==\n'
+ '\n'
+ 'According to the American Academy of Dermatology, the most common types of '
+ 'moles are skin tags, raised moles, and flat moles. Benign moles are usually '
+ 'brown, tan, pink, or black (the latter especially on dark-colored skin). '
+ 'They are circular or oval and are usually small (commonly between 1–3 mm), '
+ 'though some can be larger than the size of a typical pencil eraser (>5 mm). '
+ 'Some moles produce dark, coarse hair. Common mole hair removal procedures '
+ 'include plucking, cosmetic waxing, electrolysis, threading, and '
+ 'cauterization.\n'
+ '\n'
+ '\n'
+ '=== Aging ===\n'
+ 'Moles tend to appear during early childhood and during the first 30 years of '
+ 'life. They may change slowly, becoming raised, changing color, or gradually '
+ 'fading. Most people have between 30 and 40 moles, but some have as many as '
+ '600.\n'
+ 'The number of moles a person has was found to have a correlation with '
+ 'telomere length. However, the relation between telomeres and aging remains '
+ 'uncertain.\n'
+ '\n'
+ '\n'
+ '=== Complications ===\n'
+ 'The American Academy of Dermatology says that the vast majority of moles are '
+ 'benign. Data on the chances of transformation from melanocytic nevus to '
+ 'melanoma is controversial, but it appears that about 10% of malignant '
+ 'melanomas have a precursor lesion, of which about 10% are melanocytic nevi. '
+ 'Therefore, it appears that malignant melanoma quite seldom (1% of cases) has '
+ 'a melanocytic nevus as a precursor.\n'
+ '\n'
+ '\n'
+ '== Cause ==\n'
+ 'The cause of this condition is not clearly understood, but it is thought to '
+ 'result from a defect in embryologic development during the first 12 weeks of '
+ 'pregnancy. The defect is thought to cause a proliferation of melanocytes, '
+ 'the cells responsible for normal skin color. When melanocytes are produced '
+ 'at an extremely rapid rate, they form in clusters instead of spreading out '
+ 'evenly, resulting in abnormal skin pigmentation in some areas of the body.\n'
+ '\n'
+ '\n'
+ '=== Genetics ===\n'
+ "Genes can influence a person's moles.\n"
+ 'Dysplastic nevus syndrome is a largely hereditary condition that causes a '
+ 'person to have a large quantity of moles (often 100 or more), with some '
+ 'larger than normal or atypical. This often leads to a higher risk of '
+ 'melanoma, a serious type of skin cancer. Dysplastic nevi are more likely '
+ 'than ordinary moles to become cancerous. While dysplastic nevi are common '
+ 'and many people have a few of these abnormal moles, having more than 50 '
+ 'ordinary moles also increases the risk of developing melanoma.\n'
+ 'In the general population, a slight majority of melanomas do not form in '
+ 'existing moles but rather create new growths on the skin. Somewhat '
+ 'surprisingly, this pattern also applies to those with dysplastic nevi. These '
+ 'individuals are at a higher risk of melanoma occurring not only where there '
+ 'is an existing mole but also in areas without moles. Consequently, such '
+ 'persons need regular examinations to check for changes in their moles and to '
+ 'identify any new ones.\n'
+ '\n'
+ '\n'
+ '=== Sunlight ===\n'
+ 'Ultraviolet (UV) light from the sun causes premature aging of the skin and s')
+------------------------------------------------------------------------------------------------------------------------
+
+---relationships---
+------------------------------------------------------------------------------------------------------------------------
+{'mediastinal melanocytic neurilemmoma': ['mediastinal melanocytic '
+                                          'neurilemmoma is a type of melanotic '
+                                          'neurilemmoma.'],
+ 'familial multiple nevi flammei': ['familial multiple nevi flammei is a type '
+                                    'of capillary disease.'],
+ 'large congenital melanocytic nevus': ['large congenital melanocytic nevus is '
+                                        'a type of physical disorder.',
+                                        'large congenital melanocytic nevus is '
+                                        'a type of skin disease.',
+                                        'large congenital melanocytic nevus is '
+                                        'associated with gene BRAF.',
+                                        'large congenital melanocytic nevus is '
+                                        'associated with gene NRAS.',
+                                        'large congenital melanocytic nevus is '
+                                        'associated with gene HRAS.',
+                                        'large congenital melanocytic nevus is '
+                                        'associated with gene RAF1.',
+                                        'large congenital melanocytic nevus is '
+                                        'associated with gene MC1R.'],
+ 'melanoma in congenital melanocytic nevus': ['melanoma in congenital '
+                                              'melanocytic nevus is a type of '
+                                              'skin melanoma.',
+                                              'melanoma in congenital '
+                                              'melanocytic nevus is associated '
+                                              'with gene BRAF.'],
+ 'central nervous system melanocytic neoplasm': ['meningeal melanomatosis is a '
+                                                 'type of central nervous '
+                                                 'system melanocytic neoplasm.',
+                                                 'diffuse meningeal '
+                                                 'melanocytosis is a type of '
+                                                 'central nervous system '
+                                                 'melanocytic neoplasm.',
+                                                 'central nervous system '
+                                                 'melanocytic neoplasm is a '
+                                                 'type of central nervous '
+                                                 'system cancer.'],
+ 'malignant melanocytic neoplasm of the peripheral nerve sheath': ['malignant '
+                                                                   'melanocytic '
+                                                                   'neoplasm '
+                                                                   'of the '
+                                                                   'peripheral '
+                                                                   'nerve '
+                                                                   'sheath is '
+                                                                   'a type of '
+                                                                   'malignant '
+                                                                   'peripheral '
+                                                                   'nerve '
+                                                                   'sheath '
+                                                                   'tumor.',
+                                                                   'melanotic '
+                                                                   'psammomatous '
+                                                                   'malignant '
+                                                                   'peripheral '
+                                                                   'nerve '
+                                                                   'sheath '
+                                                                   'tumor is a '
+                                                                   'type of '
+                                                                   'malignant '
+                                                                   'melanocytic '
+                                                                   'neoplasm '
+                                                                   'of the '
+                                                                   'peripheral '
+                                                                   'nerve '
+                                                                   'sheath.'],
+ 'malignant melanocytic peripheral nerve sheath tumor of mediastinum': ['malignant '
+                                                                        'melanocytic '
+                                                                        'peripheral '
+                                                                        'nerve '
+                                                                        'sheath '
+                                                                        'tumor '
+                                                                        'of '
+                                                                        'mediastinum '
+                                                                        'is a '
+                                                                        'type '
+                                                                        'of '
+                                                                        'peripheral '
+                                                                        'nervous '
+                                                                        'system '
+                                                                        'neoplasm.',
+                                                                        'malignant '
+                                                                        'melanocytic '
+                                                                        'peripheral '
+                                                                        'nerve '
+                                                                        'sheath '
+                                                                        'tumor '
+                                                                        'of '
+                                                                        'mediastinum '
+                                                                        'is a '
+                                                                        'type '
+                                                                        'of '
+                                                                        'mediastinal '
+                                                                        'cancer.']}
+------------------------------------------------------------------------------------------------------------------------
+
+---information---
+------------------------------------------------------------------------------------------------------------------------
+[
+    {
+        "Disease": "mediastinal melanocytic neurilemmoma",
+        "Identifier": "DOID:6484",
+        "Number_of_neighbors": 3,
+        "Relationships": [
+            "mediastinal melanocytic neurilemmoma is a type of melanotic neurilemmoma."
+        ]
+    },
+    {
+        "Disease": "familial multiple nevi flammei",
+        "Identifier": "DOID:0111529",
+        "Number_of_neighbors": 3,
+        "Relationships": [
+            "familial multiple nevi flammei is a type of capillary disease."
+        ]
+    },
+    {
+        "Disease": "large congenital melanocytic nevus",
+        "Identifier": "DOID:0111359",
+        "Number_of_neighbors": 15,
+        "Relationships": [
+            "large congenital melanocytic nevus is a type of physical disorder.",
+            "large congenital melanocytic nevus is a type of skin disease.",
+            "large congenital melanocytic nevus is associated with gene BRAF.",
+            "large congenital melanocytic nevus is associated with gene NRAS.",
+            "large congenital melanocytic nevus is associated with gene HRAS.",
+            "large congenital melanocytic nevus is associated with gene RAF1.",
+            "large congenital melanocytic nevus is associated with gene MC1R."
+        ]
+    },
+    {
+        "Disease": "melanoma in congenital melanocytic nevus",
+        "Identifier": "DOID:0070327",
+        "Number_of_neighbors": 5,
+        "Relationships": [
+            "melanoma in congenital melanocytic nevus is a type of skin melanoma.",
+            "melanoma in congenital melanocytic nevus is associated with gene BRAF."
+        ]
+    },
+    {
+        "Disease": "central nervous system melanocytic neoplasm",
+        "Identifier": "DOID:4955",
+        "Number_of_neighbors": 7,
+        "Relationships": [
+            "meningeal melanomatosis is a type of central nervous system melanocytic neoplasm.",
+            "diffuse meningeal melanocytosis is a type of central nervous system melanocytic neoplasm.",
+            "central nervous system melanocytic neoplasm is a type of central nervous system cancer."
+        ]
+    },
+    {
+        "Disease": "malignant melanocytic neoplasm of the peripheral nerve sheath",
+        "Identifier": "DOID:6345",
+        "Number_of_neighbors": 5,
+        "Relationships": [
+            "malignant melanocytic neoplasm of the peripheral nerve sheath is a type of malignant peripheral nerve sheath tumor.",
+            "melanotic psammomatous malignant peripheral nerve sheath tumor is a type of malignant melanocytic neoplasm of the peripheral nerve sheath."
+        ]
+    },
+    {
+        "Disease": "malignant melanocytic peripheral nerve sheath tumor of mediastinum",
+        "Identifier": "DOID:7077",
+        "Number_of_neighbors": 5,
+        "Relationships": [
+            "malignant melanocytic peripheral nerve sheath tumor of mediastinum is a type of peripheral nervous system neoplasm.",
+            "malignant melanocytic peripheral nerve sheath tumor of mediastinum is a type of mediastinal cancer."
+        ]
+    }
+]
+------------------------------------------------------------------------------------------------------------------------

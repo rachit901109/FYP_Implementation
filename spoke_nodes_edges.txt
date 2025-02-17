@@ -1,0 +1,174 @@
+Node Types
+    • Anatomy – anatomical structures; all entries in Uberon, along with directed edges between them to reflect the hierarchy
+    • AnatomyCellType – Anatomy–Cell Type combinations with expression data in the Human Protein Atlas
+    • BiologicalProcess – biological process terms from Gene Ontology with 2-1000 annotated genes
+    • Blend – Dietary Supplement ingredient names are recorded from the product label's supplement facts panel. Data from NHANES These ingredients have a blend flag.
+    • CellType – cell types from Cell Ontology for AnatomyCellType nodes
+    • CellularComponent – cellular component terms from Gene Ontology with 2-1000 annotated genes
+    • Compound – the union of the following:
+        approved small-molecule compounds in DrugBank with documented chemical structures
+        all compounds in ChEMBL 
+          • glycans from the Kyoto Encyclopedia of Genes and Genomes (KEGG)
+    • DietarySupplement – Product data from NHANES
+    •	Disease – all entries in Disease Ontology, along with directed edges between them to reflect the hierarchy
+    • EC – Enzyme Commission numbers from pathway sources
+    • Food – from FoodOn
+    • Gene – protein-coding genes of select organisms from Entrez Gene
+    • Location – US data with zipcode from Location and all countries from Geonames
+    • MiRNA – MiRNA data from MiRDB
+    • MolecularFunction – molecular function terms from Gene Ontology with 2-1000 annotated genes
+    • Organism – all taxonomic levels from NCBI Taxonomy for Homo sapiens, bacteria with Pathway data, and severe acute respiratory syndrome coronovirus 2 (SARS-CoV-2). Furthermore, it contains bacterial strains sourced from BV-BRC
+    • Pathway – human pathways from:
+        WikiPathways
+        Reactome from Pathway Commons
+        NCI Pathway Interaction Database from Pathway Commons 
+    ... human and canonical bacterial pathways from:
+        Kyoto Encyclopedia of Genes and Genomes (KEGG) pathway and signature modules 
+    ... bacterial pathways not represented in KEGG from:
+        MetaCyc 
+    • PharmacologicClass – from DrugCentral, the following annotation types:
+        FDA Chemical/Ingredient
+        FDA Chemical Structure
+        FDA Mechanism of Action
+        FDA Physiologic Effect 
+    • Protein – proteins of select organisms in UniProtKB
+    • ProteinDomain – from Pfam, domains in proteins
+    • ProteinFamily – from Pfam, families (clans) of protein domains
+    • Reaction – reactions in pathways
+    • SARSCov2 – SARS-CoV-2 proteins studied in Gordon et al., 2020
+    • SideEffect – all entries in SIDER
+    • Variants – Variants pulled from ClinVar and GWAS Catalog, position in HG38 build. Information from population allele dosage pulled from dbSNP.
+    • Symptom – Medical Subject Headings (MeSH) terms from:
+        MeSH subtree C23.888 (Diseases / Pathological Conditions, Signs and Symptoms / Signs and Symptoms)
+        Human Phenotype Ontology disease-symptom data 
+------------------------------------------------------------------------------------------------------------------------
+
+Edge Types
+    • Anatomy→contains→Anatomy – indicates a relationship of increasing specifity between Anatomy nodes from Uberon, for example, “sense organ” contains “eye”
+    • Anatomy-downregulates-Gene – from Bgee, edges for genes with log2FC (log2 fold change in transcripts per million) ≤ –10 in a tissue (Anatomy) vs. the average over all human adult datasets; annotated with values for log2FC, p-value, and false discovery rate according to the Benjamini-Hochberg procedure
+    • Anatomy-upregulates-Gene – from Bgee, edges for genes with log2FC (log2 fold change in transcripts per million) ≥ 10 in a tissue (Anatomy) vs. the average over all human adult datasets; annotated with values for log2FC, p-value, and false discovery rate according to the Benjamini-Hochberg procedure
+    • Anatomy-expresses-Gene – from Bgee, each gene-Anatomy (gene-tissue) pair with more records marked “present” than “absent”
+    • Anatomy→isa→Anatomy – indicates a relationship of increasing generality between Anatomy nodes from Uberon, for example, “eye” is a “sense organ”
+    • Anatomy→partof→Anatomy – edges between Anatomy nodes from Uberon indicating physical inclusion, for example, “brain” is part of “central nervous system”
+    • AnatomyCellType-expresses-Gene – gene expression in a specific cell type in a specific tissue from the Human Protein Atlas
+    • AnatomyCellType-isin-Anatomy – link between corresponding AnatomyCellType and Anatomy nodes
+    • AnatomyCellType-isin-CellType – link between corresponding AnatomyCellType and CellType nodes
+    • CellType→isa→CellType – indicates a relationship of increasing generality from Cell Ontology
+    • CellType→partof→Anatomy – Cell types in Cell Ontology are linked to Uberon via part-of relationships from Cell Ontology
+        Specimens analyzed and exposed by HPA (normal-tissue.csv) were mapped to the closest corresponding CL nodes (e.g. "adipocyte of breast"). Link between cell type (CL) and anatomy nodes (UBERON) provided by Cell Ontology. 
+    • Compound-affects-(mutant)Gene – evidence for functional interaction of SPOKE compounds with mutant genes, from:
+        CIViC (Clinical Interpretations of Variants in Cancer)
+        ClinicalTrials.gov
+        Genomics of Drug Sensitivity in Cancer (GDSC) 
+    • Compound-binds-Protein – compound-protein binding relationships from the following sources:
+        BindingDB compound binding to single proteins, annotated with affinity (using Kd over Ki over IC50, ignoring EC50, and taking a geometric mean if there were multiple values of the same measure)
+        DrugCentral target
+        ChEMBL single-protein target 
+    • Compound-binds-ProteinDomain – from Protein Common Interface Database (ProtCID) (Xu and Dunbrack, 2020)
+    • Compound-causes-SideEffect – from SIDER
+    • Compound-contraindicates-Disease – DrugCentral contraindications (more accurately, the compound is contraindicated by the disease)
+    • Compound-downregulates-Gene – compound downregulates gene according to consensus transcriptional profiles calculated from LINCS L1000 data
+    • Compound-foundin-Location – shows contaminants found in locations based on EPA UCMR4(2018-2020) Occurrence data
+    • Compound-interacts-Food – from Food Interactions with Drugs Evidence Ontology (FIDEO)
+    • Compound-interacts-Compound – from DrugCentral
+    • Compound-upregulates-Gene – compound upregulates gene according to consensus transcriptional profiles calculated from LINCS L1000 data
+    • Compound-treats-Disease
+        ChEMBL indications, annotated with maximum phase (0 preclinical, 1-3 clinical trials, 4 approved); sources include DailyMed, ATC, FDA, ClinicalTrials.gov
+        DrugCentral indications 
+    • CoronavirusProtein-interacts-Protein – SARS-CoV-2-human protein-protein interactions from Gordon et al., 2020, as well as the known interaction between the SARS2CoV spike protein and ACE2_HUMAN
+    • Disease-associates-Gene
+        Online Mendelian Inheritance in Man – see omim_spoke.pptx
+            keep relationships with highest level of evidence (phenotype mapping key = 3) and known inheritance patterns
+            encode modifiers like “susceptibility for”
+            use inheritance patterns and modifiers to classify as somatic, non-Mendelian (low confidence), or Mendelian (moderate or high confidence)
+            keep only high-confidence 
+        DISEASES – annotated with source type:
+            text mining
+            knowledge: from Genetics Home Reference (GHR) and UniProtKB
+            experiments: from Catalog Of Somatic Mutations In Cancer (COSMIC) and DistiLD 
+        GWAS Catalog – disease-gene pairs with data from at least 1000 samples and p-value < 5 x 10–8 
+    • Disease→contains→Disease – indicates a relationship of increasing specificity between Disease nodes from Disease Ontology, for example, “cell type cancer” contains “melanoma”
+    • Disease→isa→Disease – indicates a relationship of increasing generality between Disease nodes from Disease Ontology, for example, “melanoma” is a “cell type cancer”
+    • Disease-localizes-Anatomy – MeSH term co-occurrence in MEDLINE papers at p-value <0.005
+    • Disease-presents-Symptom – from:
+        MeSH term co-occurrence in MEDLINE papers at p-value <0.05 and enrichment >3
+        Human Phenotype Ontology 
+    • Disease-prevalenceIN-Location – shows disease prevalence in locations based on PLACES Place-2021 data. Disease prevalence in global from IHME
+    • Disease-resembles-Disease – MeSH term co-occurrence in MEDLINE papers at p-value <0.005
+    • EC-catalyzes-Reaction – from pathway sources
+    • EC→isa→EC – indicates a relationship of increasing generality from ExplorEnz
+    • Food-contains-Compound – from FooDB and Australian Food Composition Database
+    • Food→isa→Food – indicates a relationship of increasing generality from FoodOn
+    • Gene-encodes-Protein – from UniProt
+    • Gene-expressedIN-CellType – Data from HPA (number 25 in downloadable file list). Classification of genes based on blood cell type and single cell type expression, determining the number of genes elevated in a particular cell type compared to all other cell types.
+        cell type enriched -> nTPM in a particular tissue/region/cell type at least four times that of any other tissue/region/cell type
+        cell type enhanced -> nTPM in a one or several (1-5 tissues, brain regions or cell lines, or 1-10 immune cell types or single cell types) at least four times the mean of other tissue/region/cell types
+        group enriched -> nTPM in a group (of 2-5 tissues, brain regions, single cell types or cell lines, or 2-10 blood cell types) at least four times any other tissue/region/cell line/blood cell type/cell type
+        immune cell enriched -> nTPM in a particular tissue/region/cell type at least four times any other tissue/region/cell type
+        immune cell enhanced -> nTPM in a one or several (1-5 tissues, brain regions or cell lines, or 1-10 immune cell types or single cell types) at least four times the mean of other tissue/region/cell types 
+    • Gene-expressedIN-Disease – Data from Human Protein Atlas. Link between Gene and disease. It’s a RNA cancer data from Human Protein Atlas. Groups:
+        cancer enhanced : nTPM in a one or several (1-5 tissues, brain regions or cell lines, or 1-10 immune cell types or single cell types) at least four times the mean of other tissue/region/cell types
+        cancer enriched : nTPM in a particular tissue/region/cell type at least four times that of any other tissue/region/cell type
+        group enriched -> nTPM in a group (of 2-5 tissues, brain regions, single cell types or cell lines, or 2-10 blood cell types) at least four times any other tissue/region/cell line/blood cell type/cell type 
+    • Gene-marker_neg-Disease – Data from Human Protein Atlas. Indicates a relationship between gene and disease with log-rank p values for patient survival and mRNA correlation as “prognostic - unfavorable”. The data is based on The Human Protein Atlas version 21.1.
+    • Gene-marker_pos-Disease – Data from Human Protein Atlas. Indicates a relationship between gene and disease with log-rank p values for patient survival and mRNA correlation as “prognostic - favorable”. The data is based on The Human Protein Atlas version 21.1.
+    • Gene-participates-BiologicalProcess – from Gene Ontology
+    • Gene-participates-CellularComponent – from Gene Ontology
+    • Gene-participates-MolecularFunction – from Gene Ontology
+    • Gene-participates-Pathway – see the first set of Pathway sources
+    • GeneProduct→downregulates→Gene – exogenous application of a protein or peptide gene product downregulates another gene according to consensus transcriptional profiles calculated from LINCS L1000 data (connects two Gene nodes)
+    • GeneProduct→upregulates→Gene – exogenous application of a protein or peptide gene product upregulates another gene according to consensus transcriptional profiles calculated from LINCS L1000 data (connects two Gene nodes)
+    • KGene→downregulates→Gene – relationships in which knockdown or knockout (using short hairpin RNA or CRISPR) of one gene downregulates another according to consensus transcriptional profiles calculated from LINCS L1000 data
+    • KGene→upregulates→Gene – relationships in which knockdown or knockout (using short hairpin RNA or CRISPR) of one gene upregulates another according to consensus transcriptional profiles calculated from LINCS L1000 data
+    • Location→partof→Location – indicates a hierarchical geolocation relationship from Country to Zip Code level (only for the USA for now). unitedstateszipcodes.org data and all countries, divisions and their edges from GeoNames
+    • MiRNA→targets→Gene – indicates a target relationship between miRNA and genes and it shows the highest prediction score if it has multiple prediction scores between same gene and miRNA. All the predicted targets have target prediction scores between 50 - 100. Based on the MiRDB, a predicted target with a prediction score greater than 80 is most likely to be real. If the score is below 60, you need to be cautious and it is recommended to have other supporting evidence as well. Neighborhood Explorer has the filter for prediction score and sets default as greater than 80. miRDB data
+    • OGene→downregulates→Gene – relationships in which overexpression of one gene downregulates another according to consensus transcriptional profiles calculated from LINCS L1000 data
+    • OGene→upregulates→Gene – relationships in which overexpression of one gene upregulates another according to consensus transcriptional profiles calculated from LINCS L1000 data
+    • Organism-causes-Disease – human-reviewed relationships from PathoPhenoDB
+    • Organism→isa→Organism – from NCBI Taxonomy, indicates a relationship of increasing generality between organisms (e.g., species belongs to genus). In addition, it establishes the connection between BV-BRC bacterial strains and NCBI organisms.
+    • Organism-encodes-Protein
+    • Organism-includes-Pathway – from pathway sources and the Pathosystems Resource Integration Center (PATRIC)
+    • Organism-isolatedin-Location – from BV-BRC, Establish a connection between Organisms (bacterial strains) sourced from BV-BRC and Location (Countries)
+    • Organism-responds_to-Compound – from BV-BRC, Establish a connection between Organisms (bacterial strains) sourced from BV-BRC and Compounds, encompassing detailed AMR (antimicrobial resistance) phenotype data for each strain across tested antibiotics/drugs. It's crucial to acknowledge that variations in resistant phenotypes within the same strain and antibiotic stem from the utilization of diverse laboratory methods, each employing distinct methodologies
+    • Pathway→contains→Pathway – indicates a relationship of increasing specifity between pathways
+    • Pathway→isa→Pathway – indicates a relationship of increasing generality between pathways
+    • PharmacologicClass-includes-Compound – see PharmacologicClass sources
+    • Protein-decreasedin-Disease – from Institute for Systems Biology, human proteins decreased in Covid-19 disease (Su et al., 2020)
+    • Protein-expressedIN-CellLine – Link between Protein and Cell Line nodes from Cell Surface Protein Atlas.
+    • Protein-expressedIN-CellType – Link between Protein and Cell Type nodes from both HPA and Cell Taxonomy. HPA's Reliability Status on neighborhood explorer's filter:
+        Enhanced - The antibody has enhanced validation and there is no contradicting data, such as literature describing experimental evidence for a different location.
+        Supported - There is no enhanced validation of the antibody, but the annotated localization is reported in literature.
+        Approved - The localization of the protein has not been previously described and was detected by only one antibody without additional antibody validation.
+        Uncertain - The antibody-staining pattern contradicts experimental data or expression is not detected at RNA level. 
+    • Protein-increasedin-Disease – from Institute for Systems Biology, human proteins increased in Covid-19 disease (Su et al., 2020)
+    • Protein-interacts-Protein – protein-protein interactions from:
+        BioGRID BioGRID content is curated from primary experimental evidence in the biomedical literature.
+        Bioplex The BioPlex method uses molecular biology to tag proteins with hemagglutinin or FLAG and express them in cultured cells. Each bait-prey pair has associated three scores:
+            pW: Probability that the prey is a wrong identification
+            pNI: Probability of the prey is a background protein
+            pInt: Probability of the prey is a high-confidence interacting protein 
+        STRING with confidence ≥0.4, annotated with scores from the individual categories of evidence
+        STRING_Viruses Use experimental and text-mining channels to provide combined probabilities for interactions between viral and human proteins
+        Protein Common Interface Database (ProtCID) (Xu and Dunbrack, 2020)
+        IntAct 
+    • Protein-interacts-Compound – protein-compound interactions from STITCH. The edge information is coming from various sources which are: textmining, experimental, databases, and prediction. Edges were added if these basic cutoffs were passed:
+        Edges with confidence ≥0.4, from Experimental sources. OR
+        Edges with overall confidence of ≥0.7 from all sources combined.
+        Further filtering can be done from the Options -> Node and Edge attributes window. 
+    • Protein-regulates-Gene – protein-gene interactions from TFLink. The edges between proteins (Transcriptions Factors) and Genes comes from Small Scale evidence subset of TFLink TFLink small evidence includes the following databases:
+        TRRUST
+        GTRD
+        ReMap
+        TRED 
+    • Protein-has-EC – from UniProtKB
+    • ProteinDomain-interacts-ProteinDomain – from Protein Common Interface Database (ProtCID) (Xu and Dunbrack, 2020)
+    • ProteinDomain-memberof-ProteinFamily – from Pfam
+    • ProteinDomain-partof-Protein – from InterPro
+    • Reaction-consumes-Compound – from pathway sources
+    • Reaction-produces-Compound – from pathway sources
+    • Analyte-correlates-Analyte – indicates a correlation relationship between two analytes. This data comes from ISB Wellness dataset
+    Note: LOINC nodes in the Wellness dataset are mapped to Compound, Protein or LOINC nodes in SPOKE.
+    • Variant-maps-Gene – Variant (SNP) maps to gene score, that ranges from 0 (Not confidence at all) to 1 (100% confident) It uses to two score which are unified SNP2GENE from OpenTargets that goes from 0 to 1, and Clinvar that is 1.
+    • Variant-belongs-Haplotype – Variant (SNP) belongs to Haplotype, this edge represents all the SNPs and the subtitutions to form each haplotype. The information is provided by PharmaVar
+    • Variant-associates-Phenotype – Variant (SNP) associates to Phenotype, this edge represents all the SNPs that associate with a phenotype. The source of information are ClinVar and GWAS Catalog 
+------------------------------------------------------------------------------------------------------------------------
