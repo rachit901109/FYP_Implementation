@@ -374,7 +374,8 @@ if submit_button and user_input:
                 st.session_state.streaming_complete.get("right", True)):
             try:
                 # Get the latest update from the queue with a timeout
-                side, content = st.session_state.response_queue
+#                side, content = st.session_state.response_queue
+                side, content = response_queue.get(timeout=0.1)
                 # Check if this is a completion signal
                 if side == "left_complete":
                     st.session_state.streaming_complete["left"] = True
