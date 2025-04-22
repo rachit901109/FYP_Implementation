@@ -215,10 +215,10 @@ def visualize_results(results):
     """
     Create comprehensive visualization of evaluation results
     """
-    plt.figure(figsize=(15, 10))
+    plt.figure(figsize=(20, 15))
 
     # Context Relevance
-    plt.subplot(1, 1, 1)
+    plt.subplot(1, 2, 1)
 
     # Prepare data for bar plot
     num_queries = len(MEDICAL_QUERIES)
@@ -228,10 +228,10 @@ def visualize_results(results):
     # Extract context relevance values
     context_relevance_data = results["context_relevance"]
 
-    # Create bar plot
+    # Create bar plot for context relevance
     plt.bar(
         index,
-        [context_relevance_data[i][0] for i in range(2 * num_queries) if i % 2 == 0],
+        [context_relevance_data[i][0] for i in range(num_queries)],
         bar_width,
         label="Small Model w/o Context",
         color="blue",
@@ -239,15 +239,15 @@ def visualize_results(results):
 
     plt.bar(
         index + bar_width,
-        [context_relevance_data[i][1] for i in range(2 * num_queries) if i % 2 == 0],
+        [context_relevance_data[i][1] for i in range(num_queries)],
         bar_width,
-        label="Small Model w Context",
+        label="Small Model w/ Context",
         color="green",
     )
 
     plt.bar(
         index + 2 * bar_width,
-        [context_relevance_data[i][0] for i in range(2 * num_queries) if i % 2 == 1],
+        [context_relevance_data[i + num_queries][0] for i in range(num_queries)],
         bar_width,
         label="Large Model w/o Context",
         color="red",
@@ -259,44 +259,96 @@ def visualize_results(results):
     plt.xticks(index + bar_width, [f"Query {i + 1}" for i in range(num_queries)])
     plt.legend()
 
-    plt.tight_layout()
-
     # Response Similarity
-    plt.subplot(2, 2, 2)
-    plt.bar(range(len(results["response_similarity"])), results["response_similarity"])
-    plt.title("Response Similarity")
-    plt.xlabel("Query Pair")
-    plt.ylabel("Similarity (%)")
+    plt.subplot(1, 2, 2)
 
-    # # Length Difference
-    plt.subplot(2, 2, 3)
-    plt.bar(range(len(results["length_diff"])), results["length_diff"])
-    plt.title("Response Length Difference")
-    plt.xlabel("Query Pair")
-    plt.ylabel("Word Count Difference")
+    # Create bar plot for Response Similarity
+    plt.bar(
+        index,
+        [results["response_similarity"][i] for i in range(num_queries)],
+        bar_width,
+        label="Small Model w/o Context vs Small Model w/ Context",
+        color="blue",
+    )
 
-    # # Heatmap of Comparative Performance
+    plt.bar(
+        index + bar_width,
+        [results["response_similarity"][i + num_queries] for i in range(num_queries)],
+        bar_width,
+        label="Large Model w/o Context vs Small Model w/ Context",
+        color="green",
+    )
+
+    plt.title("Response Similarity Across Queries")
+    plt.xlabel("Queries")
+    plt.ylabel("Response Similarity (%)")
+    plt.xticks(index + bar_width / 2, [f"Query {i + 1}" for i in range(num_queries)])
+    plt.legend()
+
+    # Length Difference
+    # plt.subplot(2, 2, 3)
+
+    # # Create bar plot for Length Difference
+    # plt.bar(
+    #     index,
+    #     [results["length_diff"][i] for i in range(num_queries)],
+    #     bar_width,
+    #     label="Small Model w/o Context vs Small Model w/ Context",
+    #     color="red",
+    # )
+
+    # plt.bar(
+    #     index + bar_width,
+    #     [results["length_diff"][i + num_queries] for i in range(num_queries)],
+    #     bar_width,
+    #     label="Large Model w/o Context vs Small Model w/ Context",
+    #     color="orange",
+    # )
+
+    # plt.title("Response Length Difference Across Queries")
+    # plt.xlabel("Queries")
+    # plt.ylabel("Word Count Difference")
+    # plt.xticks(index + bar_width / 2, [f"Query {i + 1}" for i in range(num_queries)])
+    # plt.legend()
+
+    # Heatmap of Comparative Performance
     # plt.subplot(2, 2, 4)
+
+    # # Prepare performance matrix
     # performance_matrix = np.column_stack(
     #     [
-    #         results["context_relevance"],
+    #         [val for sublist in results["context_relevance"] for val in sublist],
     #         results["response_similarity"],
     #         results["length_diff"],
     #     ]
     # )
+
     # sns.heatmap(
     #     performance_matrix,
     #     cmap="YlGnBu",
-    #     annot=True,  # This adds the numeric values to each cell
-    #     fmt=".2f",  # Format the numeric values to 2 decimal places
-    #     xticklabels=["Context Relevance", "Response Similarity", "Length Diff"],
-    #     yticklabels=[f"Query {i + 1}" for i in range(len(performance_matrix))],
+    #     annot=True,
+    #     fmt=".2f",
+    #     xticklabels=[
+    #         "Context Relevance\n(Small w/o Context)",
+    #         "Context Relevance\n(Small w/ Context)",
+    #         "Context Relevance\n(Large w/o Context)",
+    #         "Response Similarity",
+    #         "Length Diff",
+    #     ],
+    #     yticklabels=[f"Scenario {i + 1}" for i in range(len(performance_matrix))],
     # )
     # plt.title("Comparative Performance Heatmap")
 
-    # plt.tight_layout()
-    plt.savefig("hybrid_rag_evaluation.png")
+    plt.tight_layout()
+    plt.savefig("eval_final.png")
     plt.close()
+
+
+# Run the full evaluation
+evaluation_results = run_evaluation()
+visualize_results(evaluation_results)
+
+print("Evaluation complete. Results visualization saved as 'hybrid_rag_evaluation.png'")
 
 
 #
@@ -438,6 +490,7 @@ def visualize_results(results):
 
 # Run the full evaluation
 evaluation_results = run_evaluation()
+print(evaluation_results)
 scenarios = [
     "Small Model (No Context)",
     "Small Model (With Context)",

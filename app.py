@@ -20,33 +20,40 @@ from pprint import pprint
 
 load_dotenv()
 
+
 # --- Cache model for performacne ---
 @st.cache_resource
 def load_prediction_model():
     return load_model(MODEL_PATH)
+
+
 model = load_prediction_model()
 
 # --- Diseases in HAM10000 dataset ---
 # {'bkl': 2, 'nv': 4, 'df': 3, 'mel': 6, 'vasc': 5, 'bcc': 1, 'akiec': 0}
 class_names = {
-    2: 'Benign Keratosis',
-    4: 'Melanocytic Nevi',
-    3: 'Dermatofibroma',
-    6: 'Melanoma',
-    5: 'Vascular Lesions',
-    1: 'Basal Cell Carcinoma',
-    0: 'Actinic Keratosis'
+    2: "Benign Keratosis",
+    4: "Melanocytic Nevi",
+    3: "Dermatofibroma",
+    6: "Melanoma",
+    5: "Vascular Lesions",
+    1: "Basal Cell Carcinoma",
+    0: "Actinic Keratosis",
 }
 
-api_key = os.environ.get('groq_api_key')
+api_key = "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"
 client = Groq(api_key=api_key)
+
 
 # --- Helper functions for model, llm analysis ---
 def predict_single_image(model, img_path):
     img_array = preprocess_image(img_path)
     prediction_prob = model.predict(img_array)
     predicted_class = np.argmax(prediction_prob, axis=1)[0]
-    return class_names[predicted_class],f'{prediction_prob[0][predicted_class]*100:.2f}'
+    return class_names[
+        predicted_class
+    ], f"{prediction_prob[0][predicted_class] * 100:.2f}"
+
 
 # relationship extraction for LLM analysis
 def extract_disease_relationships(data):
@@ -86,11 +93,14 @@ def extract_disease_relationships(data):
         "TARGETS_MtG": "{} targets gene {}.",
         "RESISTANT_TO_mGrC": "{} is resistant to {}.",
         "TREATS_CtD": "{} (compound) treats disease {}.",
-        "RESPONSE_TO_mGrC": "{} responds to {}."
+        "RESPONSE_TO_mGrC": "{} responds to {}.",
     }
 
     relationships = []
-    node_lookup = {node["data"]["id"]: node["data"]["properties"].get("name", "Unknown") for node in data}
+    node_lookup = {
+        node["data"]["id"]: node["data"]["properties"].get("name", "Unknown")
+        for node in data
+    }
 
     for entry in data:
         edge_type = entry["data"].get("neo4j_type")
@@ -100,9 +110,12 @@ def extract_disease_relationships(data):
             source_name = node_lookup.get(source_id, "Unknown Source")
             target_name = node_lookup.get(target_id, "Unknown Target")
 
-            relationships.append(edge_mapping[edge_type].format(source_name, target_name))
+            relationships.append(
+                edge_mapping[edge_type].format(source_name, target_name)
+            )
 
     return relationships
+
 
 def truncate_text(text, max_tokens=5000):
     """Truncates the text to fit within the token limit."""
@@ -112,6 +125,7 @@ def truncate_text(text, max_tokens=5000):
         tokens = tokens[:max_tokens]
     return enc.decode(tokens)
 
+
 def get_groq_output(disease, information):
     system_prompt = (
         "You are an advanced biomedical AI specializing in dermatology and skin diseases trained on the HAM10000 dataset. "
@@ -119,10 +133,10 @@ def get_groq_output(disease, information):
         "for patients, doctors, and researchers. Your responses should be accurate and detail"
         "You must describe its general definition, causes, symptoms, and available treatments. "
     )
-    
+
     information_text = "\n".join(information)
     truncated_info = truncate_text(information_text, max_tokens=5000)
-    
+
     user_prompt = (
         f"I am researching the skin disease **{disease}**. "
         "Please provide a detailed medical explanation including:\n\n"
@@ -134,26 +148,29 @@ def get_groq_output(disease, information):
         f"{truncated_info}\n\n"
         "Use the above data along with your medical knowledge to generate a structured response."
     )
-    
+
     messages = [
         {"role": "system", "content": system_prompt},
-        {"role": "user", "content": user_prompt}
+        {"role": "user", "content": user_prompt},
     ]
-    
+
     response = client.chat.completions.create(
         model="llama-3.3-70b-versatile",
         messages=messages,
         max_tokens=1024,
-        temperature=0.3
+        temperature=0.3,
     )
-    
+
     return response.choices[0].message.content
+
 
 # --- Streamlit application ---
 def main():
     st.title("Hybrid RAG Classifier App")
     # FUTURE SCOPE:- pdf and txt inputs for medical reports, currently upload images for diagnosis
-    uploaded_file = st.file_uploader("Upload an Image, PDF, or Text file", type=["jpg", "jpeg", "png", "pdf", "txt"])
+    uploaded_file = st.file_uploader(
+        "Upload an Image, PDF, or Text file", type=["jpg", "jpeg", "png", "pdf", "txt"]
+    )
 
     if uploaded_file is not None:
         file_path = save_file(uploaded_file)
@@ -162,44 +179,48 @@ def main():
         # Handle different file types
         if uploaded_file.type.startswith("image"):
             st.image(file_path, caption="Uploaded Image", use_container_width=True)
-            predicted_class,confidence = predict_single_image(model, file_path)
+            predicted_class, confidence = predict_single_image(model, file_path)
             st.write(f"Predicted Class: {predicted_class}")
             st.write(f"Confidence: {confidence}")
 
             # retrieve context for predicted class
-            with st.spinner('Collecting context from knowledge base...'):
+            with st.spinner("Collecting context from knowledge base..."):
                 # Initialize SPOKE network
                 network = SpokeNetwork()
                 search_results = get_search(predicted_class)
                 disease_entries = {
-                    item['name']:item for item in search_results if item['node_type'] == "Disease"
+                    item["name"]: item
+                    for item in search_results
+                    if item["node_type"] == "Disease"
                 }
-                neighborhood = { dis['identifier']:network.fetch_neighborhood(
-                        "Disease", 
-                        "identifier", 
-                        dis['identifier']
-                    ) for name, dis in disease_entries.items()
+                neighborhood = {
+                    dis["identifier"]: network.fetch_neighborhood(
+                        "Disease", "identifier", dis["identifier"]
+                    )
+                    for name, dis in disease_entries.items()
                 }
                 wiki_info = get_wikipedia_info(predicted_class)
                 print("Search Results:-")
                 pprint(search_results, sort_dicts=False)
-                print("--"*30)
+                print("--" * 30)
                 print("Disease Entries:-")
                 pprint(disease_entries, sort_dicts=False)
-                print("--"*30)
+                print("--" * 30)
                 print("Neighborhood Data:-")
                 pprint(neighborhood, sort_dicts=False)
-                print("--"*30)
+                print("--" * 30)
                 print("Wikipedia Info:-")
                 pprint(wiki_info, sort_dicts=False)
-                print("--"*30)
+                print("--" * 30)
 
             # display llm output and context provided in tabs
-            analysis_tab, wiki_tab, spoke_tab = st.tabs([
-                "Disease Analysis by LLM", 
-                "External Information", 
-                "Disease Graph Network"
-            ])
+            analysis_tab, wiki_tab, spoke_tab = st.tabs(
+                [
+                    "Disease Analysis by LLM",
+                    "External Information",
+                    "Disease Graph Network",
+                ]
+            )
 
             with analysis_tab:
                 st.markdown("### Comprehensive Disease Analysis")
@@ -208,14 +229,16 @@ def main():
                 if disease_entries:
                     formatted_data = []
                     for name, dis in disease_entries.items():
-                        neighborhood_data = neighborhood.get(dis['identifier'], [])
+                        neighborhood_data = neighborhood.get(dis["identifier"], [])
                         relationships = extract_disease_relationships(neighborhood_data)
                         all_rel[name] = relationships
                         disease_info = {
                             "Disease": dis["name"],
                             "Identifier": dis["identifier"],
                             "Number_of_neighbors": len(neighborhood_data),
-                            "Relationships": relationships if relationships else ["No significant relationships found."]
+                            "Relationships": relationships
+                            if relationships
+                            else ["No significant relationships found."],
                         }
                         formatted_data.append(disease_info)
 
@@ -224,12 +247,12 @@ def main():
                     st.warning("No external disease information found in SPOKE graph.")
                 print(f"relationships from spoke graph")
                 pprint(all_rel, sort_dicts=False)
-                print("--"*30)
+                print("--" * 30)
                 print("information given to llm from spoke graph relationship")
                 print(information)
-                print("--"*30)
+                print("--" * 30)
 
-                with st.spinner('Generating comprehensive analysis...'):
+                with st.spinner("Generating comprehensive analysis..."):
                     llm_analysis = get_groq_output(predicted_class, information)
                     st.markdown(llm_analysis)
 
@@ -242,18 +265,23 @@ def main():
                 # Display search results in a table
                 if disease_entries:
                     st.markdown("#### Search Results:")
-                    results_df = pd.DataFrame([
-                        {
-                            'Name': item.get('name', ''),
-                            'Node Type': item.get('node_type', ''),
-                            'Identifier': item.get('identifier', '')
-                        }
-                        for item in search_results
-                    ])
+                    results_df = pd.DataFrame(
+                        [
+                            {
+                                "Name": item.get("name", ""),
+                                "Node Type": item.get("node_type", ""),
+                                "Identifier": item.get("identifier", ""),
+                            }
+                            for item in search_results
+                        ]
+                    )
                     st.dataframe(results_df)
 
                     # Selectbox for diseases in search result to show corroponding network graph
-                    options = [dis.get('name', "no name key") for name, dis in disease_entries.items()]
+                    options = [
+                        dis.get("name", "no name key")
+                        for name, dis in disease_entries.items()
+                    ]
                     options.insert(0, "")
 
                     selected = st.selectbox(
@@ -263,14 +291,13 @@ def main():
 
                     dis = disease_entries.get(selected, "")
                     # Create and display network visualization
-                    if selected!="":
+                    if selected != "":
                         try:
-                            neighborhood_data = neighborhood.get(dis['identifier'], [])
+                            neighborhood_data = neighborhood.get(dis["identifier"], [])
                             html_file = network.create_network_visualization(
-                                neighborhood_data,
-                                dis['name']
+                                neighborhood_data, dis["name"]
                             )
-                            with open(html_file, 'r', encoding='utf-8') as f:
+                            with open(html_file, "r", encoding="utf-8") as f:
                                 html_content = f.read()
 
                             components.html(html_content, height=800)
@@ -280,7 +307,9 @@ def main():
                     else:
                         st.write("Please select a disease from dropdown.")
                 else:
-                    st.write("No diseases found in search results retrieved from SPOKE Graph.")
+                    st.write(
+                        "No diseases found in search results retrieved from SPOKE Graph."
+                    )
         # elif uploaded_file.type == "application/pdf":
         #     # Handle PDF file upload
         #     st.write("Uploaded PDF file content:")
@@ -301,5 +330,5 @@ def main():
         st.info("Please upload a file to proceed.")
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     main()
