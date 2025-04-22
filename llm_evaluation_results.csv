@@ -1,0 +1,41 @@
+query_id,query_text,scenario,model,has_context,context_relevance,bleu_score,rouge_score,response_similarity,response_length
+0,What are the primary symptoms of type 2 diabetes?,same_model,llama_small,False,53.895673428998705,1.0223525882180773,16.48745519713262,47.68664119050005,218
+0,What are the primary symptoms of type 2 diabetes?,same_model,llama_small,True,81.21035618207515,17.850173512257967,58.119658119658126,47.68664119050005,56
+0,What are the primary symptoms of type 2 diabetes?,same_model,mistral,False,57.37197221471288,0.7612389274065098,10.094637223974763,89.80747587769852,246
+0,What are the primary symptoms of type 2 diabetes?,same_model,mistral,True,64.09428536778104,4.756138962200854,15.576323987538942,89.80747587769852,249
+0,What are the primary symptoms of type 2 diabetes?,same_model,gemini,False,54.293612147917194,1.8548375057829254,17.32851985559567,53.92683554886302,211
+0,What are the primary symptoms of type 2 diabetes?,same_model,gemini,True,61.34383589318968,5.273612746489074,50.505050505050505,53.92683554886302,45
+0,What are the primary symptoms of type 2 diabetes?,small_vs_large,llama_large,False,56.27785434218504,0.801837503351981,17.361111111111114,73.52733706880373,226
+0,What are the primary symptoms of type 2 diabetes?,small_vs_large,llama_small,True,64.35885699153077,3.362699350894845,44.44444444444444,73.52733706880373,55
+1,Explain the process of diagnosing and treating pneumonia,same_model,llama_small,False,63.50407029600028,0.423330960447928,12.996389891696753,76.1364469046286,204
+1,Explain the process of diagnosing and treating pneumonia,same_model,llama_small,True,64.63173658136579,0.7382486893427179,21.276595744680854,76.1364469046286,202
+1,Explain the process of diagnosing and treating pneumonia,same_model,mistral,False,59.173779820958075,0.3947868646518079,9.00900900900901,85.47897290880947,244
+1,Explain the process of diagnosing and treating pneumonia,same_model,mistral,True,68.65032201575394,3.1422705662093624,21.31661442006269,85.47897290880947,233
+1,Explain the process of diagnosing and treating pneumonia,same_model,gemini,False,71.19335046677412,0.5118096732340044,18.505338078291818,88.04111244920688,206
+1,Explain the process of diagnosing and treating pneumonia,same_model,gemini,True,70.13824316781299,0.4632122091706736,14.7887323943662,88.04111244920688,210
+1,Explain the process of diagnosing and treating pneumonia,small_vs_large,llama_large,False,48.814781397471016,0.35574872775094635,11.627906976744187,86.297582395295,182
+1,Explain the process of diagnosing and treating pneumonia,small_vs_large,llama_small,True,62.38765496650351,0.39759251282675834,18.36734693877551,86.297582395295,213
+2,What are the latest treatments for rheumatoid arthritis?,same_model,llama_small,False,55.33985905294669,0.8518501449439868,19.81981981981982,47.643496279682935,156
+2,What are the latest treatments for rheumatoid arthritis?,same_model,llama_small,True,82.61651355824712,10.487551134967804,31.496062992125985,47.643496279682935,181
+2,What are the latest treatments for rheumatoid arthritis?,same_model,mistral,False,58.88337169344422,0.34973165212805163,14.56953642384106,78.74189932298037,226
+2,What are the latest treatments for rheumatoid arthritis?,same_model,mistral,True,86.13575787747824,4.252489034838881,36.61971830985915,78.74189932298037,206
+2,What are the latest treatments for rheumatoid arthritis?,same_model,gemini,False,72.35347364574423,0.5279720487976116,22.745098039215687,77.29617699999271,187
+2,What are the latest treatments for rheumatoid arthritis?,same_model,gemini,True,82.55687651602574,0.4448462182381846,29.032258064516125,77.29617699999271,178
+2,What are the latest treatments for rheumatoid arthritis?,small_vs_large,llama_large,False,65.4749122144033,0.5230430444681463,21.800947867298582,58.29638530866513,143
+2,What are the latest treatments for rheumatoid arthritis?,small_vs_large,llama_small,True,82.81490112976981,5.7633439086449565,29.565217391304348,58.29638530866513,161
+3,Describe the impact of diet on cardiovascular health,same_model,llama_small,False,67.80665001164033,0.46839049736765714,14.935064935064934,71.77567841773067,215
+3,Describe the impact of diet on cardiovascular health,same_model,llama_small,True,67.46400567145663,0.61467600527606,16.513761467889907,71.77567841773067,231
+3,Describe the impact of diet on cardiovascular health,same_model,mistral,False,59.02669379152922,0.3613636942675666,9.970674486803519,81.36583109300287,243
+3,Describe the impact of diet on cardiovascular health,same_model,mistral,True,74.1555099539877,5.2586384454946264,19.1044776119403,81.36583109300287,237
+3,Describe the impact of diet on cardiovascular health,same_model,gemini,False,75.8858973616234,0.5153838612487074,16.666666666666664,90.7580764912024,218
+3,Describe the impact of diet on cardiovascular health,same_model,gemini,True,79.87228742697303,2.6457922229098214,24.48979591836735,90.7580764912024,208
+3,Describe the impact of diet on cardiovascular health,small_vs_large,llama_large,False,64.94711577021997,0.8838365653802955,14.465408805031446,74.00838537049758,226
+3,Describe the impact of diet on cardiovascular health,small_vs_large,llama_small,True,83.44350513340497,5.487538093514571,22.149837133550488,74.00838537049758,210
+4,How do vaccines work to prevent infectious diseases?,same_model,llama_small,False,62.10809473652819,1.1018920851845073,18.064516129032256,89.53862296586217,220
+4,How do vaccines work to prevent infectious diseases?,same_model,llama_small,True,61.57252859193196,3.8088207120455118,20.064724919093848,89.53862296586217,216
+4,How do vaccines work to prevent infectious diseases?,same_model,mistral,False,52.9549844852509,1.6757069577997064,12.790697674418606,90.11778547491394,257
+4,How do vaccines work to prevent infectious diseases?,same_model,mistral,True,68.03495395295208,8.386350618460808,25.301204819277107,90.11778547491394,245
+4,How do vaccines work to prevent infectious diseases?,same_model,gemini,False,55.40704822232332,0.742692513091028,13.166144200626961,81.22656204277475,236
+4,How do vaccines work to prevent infectious diseases?,same_model,gemini,True,71.60840565182674,2.2853710869365615,30.555555555555557,81.22656204277475,208
+4,How do vaccines work to prevent infectious diseases?,small_vs_large,llama_large,False,56.20147889051547,2.1534235808216633,16.352201257861633,90.60156230070527,229
+4,How do vaccines work to prevent infectious diseases?,small_vs_large,llama_small,True,63.372894527220765,5.546345404130416,20.394736842105267,90.60156230070527,211
